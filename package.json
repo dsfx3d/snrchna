@@ -1,0 +1,79 @@
+{
+  "name": "@saga/snrchna",
+  "version": "0.0.0-development",
+  "description": "typescript babel jest prettier based package building boilerplate",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "scripts": {
+    "setup:release": "npm run commitizen:setup && npm run semantic-release:setup",
+    "commitizen:setup": "commitizen init cz-conventional-changelog --save-dev --exact --force",
+    "semantic-release:setup": "npx semantic-release-cli setup",
+    "semantic-release": "semantic-release",
+    "lint": "prettier --check \"src/**/*.ts\"",
+    "lint:fix": "tslint --fix -p ./",
+    "test": "jest --coverage",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir build --extensions \".ts,.tsx\" --source-maps inline",
+    "prebuild": "npm run lint",
+    "build": "npm run build:types && npm run build:js",
+    "bundle": "npm run build && webpack",
+    "precommit": "npm run lint && npm run test",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsfx3d/npm-package-typescript-development-scaffold.git"
+  },
+  "keywords": [
+    "typescript",
+    "babel",
+    "jest",
+    "prettier",
+    "travis-ci",
+    "npm-package",
+    "scaffold",
+    "boilerplate"
+  ],
+  "author": "dsfx3d <dsfx3d@gmail.com> (https://dsfx3d.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsfx3d/npm-package-typescript-development-scaffold/issues"
+  },
+  "homepage": "https://github.com/dsfx3d/npm-package-typescript-development-scaffold#readme",
+  "devDependencies": {
+    "@babel/cli": "7.10.5",
+    "@babel/core": "7.11.0",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.11.0",
+    "@babel/plugin-transform-runtime": "7.11.0",
+    "@babel/preset-env": "7.11.0",
+    "@babel/preset-typescript": "7.10.4",
+    "@types/jest": "26.0.8",
+    "@types/node": "13.13.9",
+    "babel-loader": "8.1.0",
+    "cz-conventional-changelog": "3.2.0",
+    "ghooks": "2.0.4",
+    "jest": "26.2.2",
+    "prettier": "2.0.5",
+    "semantic-release": "17.1.1",
+    "ts-jest": "26.1.4",
+    "tslint": "6.1.3",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-plugin-prettier": "2.3.0",
+    "typescript": "3.9.7",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
+  "dependencies": {},
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.11.0"
+  }
+}
