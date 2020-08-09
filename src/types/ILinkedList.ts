@@ -1,12 +1,14 @@
-import { DataNode } from '../lib/LinkedList/DataNode'
+import { IDataNode } from './IDataNode'
 
 export interface ILinkedList<T> {
-  head: DataNode<T>
-  tail: DataNode<T>
+  head: LinkedListNode<T>
+  tail: LinkedListNode<T>
   length: number
 
   /**
    * @yields The next node in the list starting from the head.
    */
-  next(): Generator<DataNode<T>> | null
+  next(): Generator<LinkedListNode<T>> | null
 }
+
+export interface LinkedListNode<T> extends IDataNode<T> {}
