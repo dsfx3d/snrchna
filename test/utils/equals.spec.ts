@@ -30,17 +30,21 @@ describe('util test case: equals', () => {
     const a = { a: 1 }
     const b = { a: 1 }
     const c = { c: 1 }
+    const d = { a: 1, d: 10 }
     const adeep = { a: { a: 1, o: { a: { a: 1 } } } }
     const bdeep = { a: { a: 1, o: { a: { a: 1 } } } }
     const cdeep = { a: { a: 1, o: { a: { c: 1 } } } }
+    const ddeep = { a: { a: 1, o: { a: { a: 1, d: 10 } } } }
 
     expect(equals(a, a)).toBeTruthy()
     expect(equals(a, b)).toBeTruthy()
     expect(equals(a, c)).toBeFalsy()
+    expect(equals(a, d)).toBeFalsy()
     expect(equals(a, adeep)).toBeFalsy()
     expect(equals(adeep, adeep)).toBeTruthy()
     expect(equals(adeep, bdeep)).toBeTruthy()
     expect(equals(adeep, cdeep)).toBeFalsy()
+    expect(equals(adeep, ddeep)).toBeFalsy()
   })
 
   it('can compare arrays', () => {
@@ -58,10 +62,12 @@ describe('util test case: equals', () => {
     const bh = [1, { a: 1 }, 'abc']
     const ch = [{ a: 1 }, 1, 'abc']
     const dh = [1, { d: 1 }, 'abc']
+    const eh = [1, { a: 1 }, 'abc', 4.99]
 
     expect(equals(ah, ah)).toBeTruthy()
     expect(equals(ah, bh)).toBeTruthy()
     expect(equals(ah, ch)).toBeFalsy()
     expect(equals(ah, dh)).toBeFalsy()
+    expect(equals(ah, eh)).toBeFalsy()
   })
 })

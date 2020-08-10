@@ -9,6 +9,9 @@ export function equals(a: any, b: any): boolean {
   if (typeof a !== typeof b) {
     return false
   }
+  if ((a && !b) || (!a && b)) {
+    return false
+  }
 
   if (typeof a === 'object') {
     if (a === b) {
@@ -25,15 +28,15 @@ export function equals(a: any, b: any): boolean {
         }
       }
     } else {
-      const aEntries = Object.entries(a)
-      const bEntries = Object.entries(b)
+      const aKeys = Object.keys(a)
+      const bKeys = Object.keys(b)
 
-      if (aEntries.length !== bEntries.length) {
+      if (aKeys.length !== bKeys.length) {
         return false
       }
 
-      for (const [key, value] of aEntries) {
-        if (!equals(value, b[key])) {
+      for (const key of aKeys) {
+        if (!equals(a[key], b[key])) {
           return false
         }
       }

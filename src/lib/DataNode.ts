@@ -2,8 +2,8 @@ import { IDataNode } from '../types/IDataNode'
 import { equals } from '../utils/equals'
 
 export class DataNode<T, P = any> implements IDataNode<T, P> {
-  private _data: T
-  private _pointers: P
+  protected _data: T
+  protected _pointers: P
 
   constructor(data: T) {
     this._data = data

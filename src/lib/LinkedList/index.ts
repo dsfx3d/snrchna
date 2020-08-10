@@ -6,7 +6,7 @@ export class LinkedList<T> {
   tail: LinkedListNode<T>
   private _length: number
 
-  constructor(...items: T[]) {
+  constructor(items: T[] = []) {
     this.head = null
     this.tail = null
 
@@ -55,9 +55,10 @@ export class LinkedList<T> {
     let cursor
     do {
       cursor = iterator.next()
-      if (cursor && equals(key, cursor.value.data)) {
+      if (cursor.value && equals(key, cursor.value.data)) {
         return cursor.value
       }
-    } while (cursor)
+    } while (cursor.value && cursor.value.next)
+    return null
   }
 }

@@ -1,4 +1,4 @@
-import { IDataNode } from './IDataNode'
+import { LinkedListNode } from '../lib/LinkedList/LinkedListNode'
 
 export interface ILinkedList<T> {
   head: LinkedListNode<T>
@@ -11,4 +11,6 @@ export interface ILinkedList<T> {
   next(): Generator<LinkedListNode<T>> | null
 }
 
-export interface LinkedListNode<T> extends IDataNode<T> {}
+export interface LinkedListPointer<T> {
+  next: LinkedListNode<T>
+}
