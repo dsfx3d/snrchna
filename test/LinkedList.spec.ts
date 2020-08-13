@@ -15,6 +15,19 @@ describe('Data Structure: LinkedList', () => {
     }
   })
 
+  it('has an operation to insert nodes at the begining of the list', () => {
+    const list = new LinkedList<number>([3, 4])
+    expect(list.head.data).toBe(3)
+
+    const items = [1, 2]
+    list.unshift(...[1, 2])
+    const iter = list.getIterator()
+
+    for (const item of items) {
+      expect(iter.next().value.data).toBe(item)
+    }
+  })
+
   it('can make an iterator to yields all nodes sequencialy', () => {
     const items = [1, 2, 3, 4, 5]
     const list = new LinkedList<number>(items)
