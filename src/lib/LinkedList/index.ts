@@ -36,6 +36,24 @@ export class LinkedList<T> {
     }
   }
 
+  unshift(...items: T[]) {
+    for (const item of items) {
+      if (this.head === null) {
+        if (this.head === null) {
+          this.head = new LinkedListNode<T>(item)
+          this.tail = this.head
+          this._length = 1
+          continue
+        }
+      }
+
+      const node = new LinkedListNode<T>(item)
+      node.next = this.head
+      this.head = node
+      this._length--
+    }
+  }
+
   *getIterator(): Generator<LinkedListNode<T>, LinkedListNode<T>> {
     if (this.head) {
       let cursor = this.head
