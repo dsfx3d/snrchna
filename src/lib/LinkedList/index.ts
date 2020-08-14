@@ -9,6 +9,7 @@ export class LinkedList<T> {
   constructor(items: T[] = []) {
     this.head = null
     this.tail = null
+    this._length = 0
 
     this.insert(...items)
   }
@@ -38,6 +39,13 @@ export class LinkedList<T> {
       this.tail = this.tail.next
       this._length++
     }
+  }
+
+  insertAfter(node: LinkedListNode<T>, data: T) {
+    const newNde = new LinkedListNode<T>(data)
+    newNde.next = node.next
+    node.next = newNde
+    this._length++
   }
 
   unshift(...items: T[]) {
