@@ -21,12 +21,16 @@ export class LinkedList<T> {
     return this._length
   }
 
+  private _init(item: T) {
+    this.head = new LinkedListNode<T>(item)
+    this.tail = this.head
+    this._length = 1
+  }
+
   insert(...items: T[]) {
     for (const item of items) {
-      if (this.head === null) {
-        this.head = new LinkedListNode<T>(item)
-        this.tail = this.head
-        this._length = 1
+      if (this.isEmpty) {
+        this._init(item)
         continue
       }
 
@@ -37,17 +41,13 @@ export class LinkedList<T> {
   }
 
   unshift(...items: T[]) {
-    for (const item of items) {
-      if (this.head === null) {
-        if (this.head === null) {
-          this.head = new LinkedListNode<T>(item)
-          this.tail = this.head
-          this._length = 1
-          continue
-        }
+    for (let i = items.length - 1; i >= 0; --i) {
+      if (this.isEmpty) {
+        this._init(items[i])
+        continue
       }
 
-      const node = new LinkedListNode<T>(item)
+      const node = new LinkedListNode<T>(items[i])
       node.next = this.head
       this.head = node
       this._length--
