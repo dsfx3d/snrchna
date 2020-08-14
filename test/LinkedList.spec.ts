@@ -15,6 +15,39 @@ describe('Data Structure: LinkedList', () => {
     }
   })
 
+  it('has property isEmpty to check if list is empty', () => {
+    const list = new LinkedList<number>()
+    expect(list.isEmpty).toBeTruthy()
+  })
+
+  it('has property length to get the number of nodes in the list', () => {
+    const emptyList = new LinkedList<number>()
+    expect(emptyList.length).toBe(0)
+
+    // initialized with constructor
+    const list = new LinkedList<number>([1, 2])
+    expect(list.length).toBe(2)
+
+    // insert single node
+    list.insert(3)
+    expect(list.length).toBe(3)
+
+    // insert multiple nodes
+    list.insert(3, 4, 5)
+    expect(list.length).toBe(6)
+  })
+
+  it('has a method insert to append nodes to the list', () => {
+    const list = new LinkedList<number>([1, 2])
+    list.insert(3, 4, 5)
+
+    let node = list.head
+    for (let i = 1; i <= 5; i++) {
+      expect(node.data).toBe(i)
+      node = node.next
+    }
+  })
+
   it('has an operation to insert nodes at the begining of the list', () => {
     const list = new LinkedList<number>([3, 4])
     expect(list.head.data).toBe(3)
