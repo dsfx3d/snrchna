@@ -35,6 +35,14 @@ describe('Data Structure: LinkedList', () => {
     // insert multiple nodes
     list.insert(3, 4, 5)
     expect(list.length).toBe(6)
+
+    // prepend single node
+    list.unshift(1)
+    expect(list.length).toBe(7)
+
+    // prepend multiple node
+    list.unshift(1, 2, 3)
+    expect(list.length).toBe(10)
   })
 
   it('has a method insert to append nodes to the list', () => {
@@ -48,7 +56,21 @@ describe('Data Structure: LinkedList', () => {
     }
   })
 
-  it('has an operation to insert nodes at the begining of the list', () => {
+  it('has a method insertAfter to insert a new node after a paticular node', () => {
+    const list = new LinkedList<number>([1, 2, 4])
+    const node2 = list.head.next
+    list.insertAfter(node2, 3)
+
+    expect(list.length).toBe(4)
+
+    let node = list.head
+    for (const item of [1, 2, 3, 4]) {
+      expect(node.data).toBe(item)
+      node = node.next
+    }
+  })
+
+  it('has a method to prepend nodes to the list', () => {
     const list = new LinkedList<number>([3, 4])
     expect(list.head.data).toBe(3)
 
@@ -85,11 +107,14 @@ describe('Data Structure: LinkedList', () => {
     expect(nResult).not.toBeNull()
     expect(nResult.data).toBe(4)
 
+    // search object
     const oItems = [{ a: 1 }, { a: { a: 1 } }]
     const oList = new LinkedList(oItems)
+
     let oResult = oList.search(oItems[0])
     expect(oResult).not.toBeNull()
     expect(equals(oResult.data, oItems[0])).toBeTruthy()
+
     oResult = oList.search(oItems[1])
     expect(oResult).not.toBeNull()
     expect(equals(oResult.data, oItems[1])).toBeTruthy()
@@ -99,13 +124,6 @@ describe('Data Structure: LinkedList', () => {
     const items = [1, 2, 3, 4, 5]
     const list = new LinkedList<number>(items)
     expect(list.search(8)).toBeNull()
-  })
-
-  it('has a property to represent if the list is empty', () => {
-    const list = new LinkedList<number>()
-    expect(list.isEmpty).toBeTruthy()
-    list.insert(1, 2, 3)
-    expect(list.isEmpty).toBeFalsy()
   })
 })
 
