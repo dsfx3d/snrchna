@@ -74,7 +74,7 @@ export class LinkedList<T> {
       const node = new LinkedListNode<T>(items[i])
       node.next = this.head
       this.head = node
-      this._length--
+      this._length++
     }
   }
 
