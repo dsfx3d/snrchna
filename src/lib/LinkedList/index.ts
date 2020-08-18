@@ -28,6 +28,11 @@ export class LinkedList<T> {
     this._length = 1
   }
 
+  /**
+   * Appends new nodes to the list.
+   *
+   * @param ...items The data items to be inserted.
+   */
   insert(...items: T[]) {
     for (const item of items) {
       if (this.isEmpty) {
@@ -41,6 +46,12 @@ export class LinkedList<T> {
     }
   }
 
+  /**
+   * Inserts new node after the node.
+   *
+   * @param {LinkedListNode} node The predecessor node of the new node.
+   * @param {any} data The data for the new node.
+   */
   insertAfter(node: LinkedListNode<T>, data: T) {
     const newNde = new LinkedListNode<T>(data)
     newNde.next = node.next
@@ -48,6 +59,11 @@ export class LinkedList<T> {
     this._length++
   }
 
+  /**
+   * prepends new nodes to the list.
+   *
+   * @param {any} items The data items to be inserted.
+   */
   unshift(...items: T[]) {
     for (let i = items.length - 1; i >= 0; --i) {
       if (this.isEmpty) {
@@ -62,6 +78,11 @@ export class LinkedList<T> {
     }
   }
 
+  /**
+   * generates an iterator to traverse the list.
+   *
+   * @returns {Iterator}
+   */
   *getIterator(): Generator<LinkedListNode<T>, LinkedListNode<T>> {
     if (this.head) {
       let cursor = this.head
@@ -76,6 +97,13 @@ export class LinkedList<T> {
     }
   }
 
+  /**
+   * Lookup a node by data.
+   *
+   * @param key The search key, this will be the data to search for.
+   *
+   * @returns returns the node if it exists otherwise null.
+   */
   search(key: T): LinkedListNode<T> {
     const iterator = this.getIterator()
     let cursor
