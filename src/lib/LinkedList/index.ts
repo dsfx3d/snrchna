@@ -115,4 +115,24 @@ export class LinkedList<T> {
     } while (cursor.value && cursor.value.next)
     return null
   }
+
+  /**
+   * Lookup a node by any property of the node.
+   *
+   * @param key The search key, this will be the value of the prop to search by.
+   * @param prop The prop to search by.
+   *
+   * @returns returns the node if it exists otherwise null.
+   */
+  searchBy(key: T, param: string = 'data'): LinkedListNode<T> {
+    const iterator = this.getIterator()
+    let cursor
+    do {
+      cursor = iterator.next()
+      if (cursor.value && equals(key, cursor.value.data)) {
+        return cursor.value
+      }
+    } while (cursor.value && cursor.value.next)
+    return null
+  }
 }
