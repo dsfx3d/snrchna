@@ -1,6 +1,5 @@
-export interface IDataNode<T, P = any> {
-  readonly data: T
-  pointers: P
+export interface IDataNode<T> {
+  data: T
 
   /**
    * Compares with a node for equality.
@@ -8,9 +7,5 @@ export interface IDataNode<T, P = any> {
    * @param node The which is to be compared.
    * @returns true if both nodes are equal otherwise false.
    */
-  equals(node: any): boolean
-}
-
-export interface INodePointer<NODE> {
-  [points: string]: NODE
+  equals(node: this): boolean
 }
